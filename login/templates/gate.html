@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Registration</h1>
+    {% if messages %}
+    <ul class="messages">    
+        {% for message in messages %}  
+            {%if 'login' not in message.tags %}  
+                <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
+            {% endif %}
+        {% endfor %}
+    </ul>
+    {% endif %}
+    <form action="/register" method='post'>
+        {% csrf_token %}
+        <label for="first_name">First Name :</label>
+        <input type="text" name="first_name"><br>
+
+        <label for="last_name">Last Name :</label>
+        <input type="text" name="last_name"><br>
+
+        <label for="email">Email :</label>
+        <input type="text" name="email"><br>
+
+        <label for="password">Password :</label>
+        <input type="text" name="password"><br>
+
+        <label for="password_confirmation">Password Confirmation :</label>
+        <input type="text" name="password_conf"><br>
+        <button type="submit">Register</button><br>
+
+    </form>
+
+    <h1>Login</h1>
+    {% if messages %}
+    <ul class="messages">    
+        {% for message in messages %}  
+            {%if 'login' in message.tags %}  
+                <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
+            {% endif %}
+        {% endfor %}
+    </ul>
+    {% endif %}
+    <form action="/login" method="post" >
+        {% csrf_token %}
+        <label for="login_email">Email :</label>
+        <input type="text" name="login_email"><br>
+
+        <label for="password">Password :</label>
+        <input type="text" name="login_password"><br>
+        <button type="submit">Login</button>
+
+    </form>
+
+
+</body>
+</html>
